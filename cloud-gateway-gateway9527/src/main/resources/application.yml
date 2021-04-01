@@ -1,6 +1,7 @@
 server:
   port: 9527
 
+
 spring:
   application:
     name: cloud-gateway
@@ -16,7 +17,7 @@ spring:
           uri: lb://CLOUD-PAYMENT-SERVICE
           predicates:
             - Path=/payment/get/** # 断言，路径相匹配的进行路由
-            #- After=2017-01-20T17:42:47.789-07:00[America/Denver]
+            - After=2021-03-10T15:18:04.860+08:00[Asia/Shanghai]
             #- Before=2017-01-20T17:42:47.789-07:00[America/Denver]
             #- Cookie=username,zzyy
             #- Header=X-Request-Id, \d+ #请求头要有X-Request-Id属性，并且值为正数
@@ -24,13 +25,15 @@ spring:
             #- Method=GET
             #- Query=username, \d+ # 要有参数名username并且值还要是正整数才能路由
           # 过滤
-          #filters:
-          #  - AddRequestHeader=X-Request-red, blue
+#          filters:
+#            - AddRequestHeader=X-Request-red, blue
+
         - id: payment_route2
 #          uri: http://localhost:8001
           uri: lb://CLOUD-PAYMENT-SERVICE
           predicates:
             Path=/payment/lb/** #断言,路径相匹配的进行路由
+
 
 eureka:
   instance:
